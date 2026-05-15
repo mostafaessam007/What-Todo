@@ -11,7 +11,7 @@ body{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: #EEEEEE;
+    background-color: #d1cdcd;
 }
 header{
     display: flex;
@@ -33,16 +33,36 @@ main{
     color: #24a1fa;
 }
 .sidebar{
+    display: flex;
+    flex-direction: column;
     background-color: #368AFF;
     grid-area: sidebar;
     height: 100%;
-    padding: 1em
+    padding: 1em;
+    gap: 1em;
 }
-.projects{
+.projects, .inbox{
     font-size: 30px;
+    color: #202130;
+    text-align: left;
 }
-.addProjectBtn{
 
+.project-button, .inbox{
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 10px;
+}
+.project-button{
+font-size: 20px;
+text-align: left;
+}
+.project-button:hover{
+    background-color:#2f7ce7;
+}
+.inbox:hover{
+    background-color:#2f7ce7;
 }
 fieldset{
     background-color: #91bbf6;
@@ -69,9 +89,11 @@ fieldset{
     background-color: rgba(0,0,0,0.5);
     pointer-events: none;
     visibility: hidden;
+    z-index: 280;
 }
 .open-overlay{
     visibility: visible;
+    pointer-events: auto;
 }
 .todoListContainer{
     grid-area: todoListContainer;

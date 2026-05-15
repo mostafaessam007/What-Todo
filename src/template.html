@@ -16,6 +16,7 @@
 <main>
 
 <div class="sidebar">
+    <button class="inbox">Inbox</button>
     <section class="projects">
         <p>Projects</p>
         <div class="currentProjects">
@@ -53,13 +54,30 @@
             </form>
         </div>
 
+        <div class="modal" id="projectModal">
+            <form>
+                <fieldset>
+                    <legend>Project</legend>
+                     <label for="projectTitle">Title</label>
+                    <input type="text" name="projectTitle" id="projectTitle" maxlength="50" required>
+
+                    <label for="projectDescription">Description</label>
+                    <input type="text" name="projectDescription" id="projectDescription" maxlength="250">
+
+                     <div class="addProjectBtnContainer">
+                         <button type="submit" class="addProjectBtnForm">Add Project</button>
+                     </div>
+                </fieldset>
+            </form>
+        </div>
+
         <div class="todoListContainer">
 
-            <button class="newTodoBtn">Add new todo</button>
-        <h2>Current Todo:</h2>
+        <h2 class="currentHeading">Inbox</h2>
         <div class="todoList">
             
         </div> 
+        <button class="newTodoBtn">Add new todo</button>
         </div>
         
 
@@ -73,15 +91,3 @@
 
 </body>
 </html>
-
-  <!-- <label for="priority">Priority</label>
-                    <input type="number" name="priority" id="priority" min="1" max="3" step="1" required> -->
-
-                    <!-- <label for="high">High</label>
-                    <input type="radio" name="priority" id="high" value="high" required>
-
-                    <label for="medium">Medium</label>
-                    <input type="radio" name="priority" id="medium" value="medium" required>
-
-                    <label for="low">Low</label>
-                    <input type="radio" name="priority" id="low" value="low" required> -->

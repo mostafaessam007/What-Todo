@@ -1,29 +1,56 @@
 import "./style.css";
 import {todo} from "./Todo.js";
-import {saveTodos} from "./Storage.js";
+import {project} from "./Projct.js";
+import {saveTodos, saveProjects} from "./Storage.js";
 import { updateDOM } from "./DOM.js";
-updateDOM();
 
+
+let currentProjectId = null;
+let currentProjectTitle = null;
 
 const newTodoBtn = document.querySelector('.newTodoBtn');
-const modal = document.querySelector(".modal");
+const modal = document.querySelector("#modal");
 const overlay = document.querySelector(".overlay");
+const addProjectBtn = document.querySelector('.addProjectBtn');
+const projectModal = document.querySelector("#projectModal");
 
+// the "Add new todo" button that opens the form
 newTodoBtn.addEventListener("click", ()=>{
     modal.classList.add("open-modal");
     overlay.classList.add("open-overlay")
 })
 
+
 const addTodoBtn = document.querySelector('.addTodoBtn');
+// the "Add Todo" button that submits the form and closes it
 addTodoBtn.addEventListener("click", ()=>{
      modal.classList.remove("open-modal")
      overlay.classList.remove("open-overlay")
-
 })
 
 
-const form = document.querySelector('form');
+// the "+ Add Project" button that opens the form
+addProjectBtn.addEventListener("click", ()=>{
+    projectModal.classList.add("open-modal");
+    overlay.classList.add("open-overlay")
+})
 
+
+const closeProjectModal = () => {
+    projectModal.classList.remove("open-modal")
+    overlay.classList.remove("open-overlay")
+}
+// the "Add Project" button that submits the form and closes it
+const addProjectBtnForm = document.querySelector('.addProjectBtnForm');
+addProjectBtnForm.addEventListener("click", ()=>{
+    closeProjectModal();
+})
+
+
+
+const form = document.querySelector('#modal form');
+const projectForm = document.querySelector('#projectModal form');
+// the event listener that takes the data from the todo form and save into local storage
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     const formData = new FormData(form);
@@ -32,16 +59,51 @@ form.addEventListener("submit", (e) => {
         formData.get("todoTitle"),
         formData.get("todoDescription"),
         formData.get("dueDate"),
-        formData.get("priority")
+        formData.get("priority"),
+        currentProjectId
     );
     saveTodos(ToDo1);
-    updateDOM();
+    updateDOM(currentProjectId);
+    form.reset();
 });
 
-// const ToDo1 = new todo(1, "Workout", "Today", "High","P1")
-// const ToDo2 = new todo(2, "Assignment", "Next Week", "Medium","P2")
-// const ToDo3 = new todo(3, "Homework", "Today", "Low","P2")
+// the event listener that takes the data from the project form and save into local storage
+projectForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const formData = new FormData(projectForm);
+    const newProject = new project(
+        crypto.randomUUID(),
+        formData.get("projectTitle"),
+        formData.get("projectDescription")
+    );
+    saveProjects(newProject);
+    closeProjectModal();
+    projectForm.reset();
+    updateDOM(currentProjectId);
+});
 
-// const todo2 = new todo (1, "big todo", "the biggest todo in my life");
+const todoList = document.querySelector('.todoList');
+const currentHeading = document.querySelector('.currentHeading');
+const inbox = document.querySelector('.inbox');
 
+// Changes the current heading to inbox, and shows the todos that is not assigned to a project
+inbox.addEventListener("click", ()=>{
+currentHeading.textContent = "Inbox";
+currentProjectId = null;
+currentProjectTitle = null;
+updateDOM(currentProjectId);
+})
 
+// Changes the current heading to the current project, and saves the id of the current project
+const currentProjects = document.querySelector('.currentProjects');
+currentProjects.addEventListener("click", (e) => {
+    if (e.target.classList.contains("project-button")) {
+         currentProjectId = e.target.dataset.projectId;
+         currentProjectTitle = e.target.dataset.projectTitle
+        currentHeading.textContent = `${currentProjectTitle}`
+        updateDOM(currentProjectId);
+    }
+});
+
+// the recursive function that updates the DOM 
+updateDOM(currentProjectId);

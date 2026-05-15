@@ -9,3 +9,15 @@ export function saveTodos(todo) {
 export function loadTodos() {
     return JSON.parse(localStorage.getItem("todos"));
 }
+
+//function to save projects to local storage
+export function saveProjects(project) {
+    const existing = JSON.parse(localStorage.getItem("projects")) || [];
+    existing.push(project);
+    localStorage.setItem("projects", JSON.stringify(existing));
+}
+
+//function to get projects from local storage
+export function loadProjects() {
+    return JSON.parse(localStorage.getItem("projects"));
+}
