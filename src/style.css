@@ -46,6 +46,10 @@ main{
     color: #202130;
     text-align: left;
 }
+.currentProjects{
+    display: flex;
+    flex-direction: column;
+}
 
 .project-button, .inbox{
     border: none;
@@ -54,12 +58,34 @@ main{
     padding: 5px;
     border-radius: 10px;
 }
+.project-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0 0.25rem;
+}
 .project-button{
-font-size: 20px;
-text-align: left;
+    font-size: 20px;
+    text-align: left;
+    flex: 1;
 }
 .project-button:hover{
     background-color:#2f7ce7;
+}
+.projectDeleteButton{
+    border: none;
+    background: transparent;
+    color: #202130;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0 0.35rem;
+    border-radius: 50%;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.projectDeleteButton:hover{
+    background-color: rgba(0,0,0,0.12);
+    color: #ff3b3b;
 }
 .inbox:hover{
     background-color:#2f7ce7;

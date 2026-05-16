@@ -1,7 +1,7 @@
 import "./style.css";
 import {todo} from "./Todo.js";
 import {project} from "./Projct.js";
-import {saveTodos, saveProjects} from "./Storage.js";
+import {saveTodos, saveProjects, deleteTodo, deleteProject} from "./Storage.js";
 import { updateDOM } from "./DOM.js";
 
 
@@ -107,3 +107,27 @@ currentProjects.addEventListener("click", (e) => {
 
 // the recursive function that updates the DOM 
 updateDOM(currentProjectId);
+
+//the event listener that deletes todos 
+const todoDeleteButton = document.querySelector('.todoDeleteButton');
+todoList.addEventListener("click", (e)=>{
+    if (e.target.classList.contains("todoDeleteButton")) {
+        const currentId = e.target.dataset.id
+        deleteTodo(currentId)
+        updateDOM(currentProjectId)
+    }
+})
+
+//the event listener that deletes projects
+currentProjects.addEventListener("click", (e)=>{
+    if (e.target.classList.contains("projectDeleteButton")) {
+        const currentId = e.target.dataset.projectId;
+        deleteProject(currentId);
+        if (currentProjectId === currentId) {
+            currentProjectId = null;
+            currentProjectTitle = null;
+            currentHeading.textContent = "Inbox";
+        }
+        updateDOM(currentProjectId);
+    }
+})

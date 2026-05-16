@@ -5,10 +5,19 @@ export function saveTodos(todo) {
     localStorage.setItem("todos", JSON.stringify(existing));
 }
 
-//another function to get todos from local storage
+//function to get todos from local storage
 export function loadTodos() {
     return JSON.parse(localStorage.getItem("todos"));
 }
+
+//function to remove a todo from local storage
+export function deleteTodo(id) {
+    const currentTodos = loadTodos() || [];
+    const updated = currentTodos.filter(todo => todo.id !== id);
+    localStorage.setItem("todos",JSON.stringify(updated))
+}
+
+
 
 //function to save projects to local storage
 export function saveProjects(project) {
@@ -20,4 +29,11 @@ export function saveProjects(project) {
 //function to get projects from local storage
 export function loadProjects() {
     return JSON.parse(localStorage.getItem("projects"));
+}
+
+//function to remove a project from local storage
+export function deleteProject(projectId) {
+    const currentProjectsData = loadProjects() || [];
+    const updated = currentProjectsData.filter(project => project.id !== projectId);
+    localStorage.setItem("projects",JSON.stringify(updated))
 }

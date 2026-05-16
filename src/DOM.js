@@ -1,8 +1,7 @@
-import {loadTodos} from "./Storage.js";
+import {loadTodos,loadProjects,deleteTodo,deleteProject} from "./Storage.js";
 const todoList = document.querySelector('.todoList');
-
-import {loadProjects} from "./Storage.js"
 const currentProjects = document.querySelector('.currentProjects')
+
 
 
 export function updateDOM(currentProjectId) {
@@ -14,13 +13,26 @@ export function updateDOM(currentProjectId) {
 
 
       currentProjectsData.forEach(project => {
+        const projectItem = document.createElement('div');
+        projectItem.classList.add('project-item');
+        projectItem.dataset.projectId = project.id;
+
         const projectButton = document.createElement('button');
         projectButton.type = 'button';
         projectButton.textContent = project.title || project.name || 'Untitled Project';
         projectButton.classList.add('project-button');
         projectButton.dataset.projectId = project.id;
-        projectButton.dataset.projectTitle = project.title
-        currentProjects.appendChild(projectButton);
+        projectButton.dataset.projectTitle = project.title || project.name || 'Untitled Project';
+
+        const projectDeleteButton = document.createElement('button');
+        projectDeleteButton.type = 'button';
+        projectDeleteButton.textContent = '✕';
+        projectDeleteButton.classList.add('projectDeleteButton');
+        projectDeleteButton.dataset.projectId = project.id;
+        projectDeleteButton.setAttribute('aria-label', 'Delete project');
+
+        projectItem.append(projectButton, projectDeleteButton);
+        currentProjects.appendChild(projectItem);
     });
 
     // it detects if there is a project selected or not
@@ -47,14 +59,19 @@ export function updateDOM(currentProjectId) {
         priorityDiv.textContent = `Priority: ${todo.priority}`;
         priorityDiv.classList.add('todo-priority');
 
-        card.append(titleDiv, descriptionDiv, dueDateDiv, priorityDiv);
+        const todoDeleteButton = document.createElement('button');
+        todoDeleteButton.textContent = 'Delete'
+        todoDeleteButton.classList.add('todoDeleteButton')
+        todoDeleteButton.dataset.id = todo.id;
+
+        card.append(titleDiv, descriptionDiv, dueDateDiv, priorityDiv,todoDeleteButton);
         todoList.appendChild(card);
     });
     } else{
         // it shows only the todos that's under the current project
         const filteredTodos = currentTodos.filter(todo => todo.projectId === currentProjectId)
         filteredTodos.forEach(todo => {
-        const card = document.createElement('section');
+           const card = document.createElement('section');
         card.classList.add('todoCard');
         card.dataset.todoId = todo.id;
 
@@ -74,8 +91,15 @@ export function updateDOM(currentProjectId) {
         priorityDiv.textContent = `Priority: ${todo.priority}`;
         priorityDiv.classList.add('todo-priority');
 
-        card.append(titleDiv, descriptionDiv, dueDateDiv, priorityDiv);
+        const todoDeleteButton = document.createElement('button');
+        todoDeleteButton.textContent = 'Delete';
+        todoDeleteButton.classList.add('todoDeleteButton');
+        todoDeleteButton.dataset.id = todo.id;
+
+        card.append(titleDiv, descriptionDiv, dueDateDiv, priorityDiv,todoDeleteButton);
         todoList.appendChild(card);
     })
     }
 }
+
+
