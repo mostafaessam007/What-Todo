@@ -14,6 +14,12 @@ const overlay = document.querySelector(".overlay");
 const addProjectBtn = document.querySelector('.addProjectBtn');
 const projectModal = document.querySelector("#projectModal");
 
+const closeAllModals = () => {
+    modal.classList.remove("open-modal");
+    projectModal.classList.remove("open-modal");
+    overlay.classList.remove("open-overlay");
+};
+
 // the "Add new todo" button that opens the form
 newTodoBtn.addEventListener("click", ()=>{
     modal.classList.add("open-modal");
@@ -24,8 +30,7 @@ newTodoBtn.addEventListener("click", ()=>{
 const addTodoBtn = document.querySelector('.addTodoBtn');
 // the "Add Todo" button that submits the form and closes it
 addTodoBtn.addEventListener("click", ()=>{
-     modal.classList.remove("open-modal")
-     overlay.classList.remove("open-overlay")
+     closeAllModals();
 })
 
 
@@ -34,6 +39,8 @@ addProjectBtn.addEventListener("click", ()=>{
     projectModal.classList.add("open-modal");
     overlay.classList.add("open-overlay")
 })
+
+overlay.addEventListener("click", closeAllModals);
 
 
 const closeProjectModal = () => {

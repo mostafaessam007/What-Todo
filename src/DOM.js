@@ -19,10 +19,10 @@ export function updateDOM(currentProjectId) {
 
         const projectButton = document.createElement('button');
         projectButton.type = 'button';
-        projectButton.textContent = project.title || project.name || 'Untitled Project';
+        projectButton.textContent = project.title ||  'Untitled Project';
         projectButton.classList.add('project-button');
         projectButton.dataset.projectId = project.id;
-        projectButton.dataset.projectTitle = project.title || project.name || 'Untitled Project';
+        projectButton.dataset.projectTitle = project.title || 'Untitled Project';
 
         const projectDeleteButton = document.createElement('button');
         projectDeleteButton.type = 'button';

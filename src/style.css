@@ -77,7 +77,7 @@ main{
     border: none;
     background: transparent;
     color: #202130;
-    font-size: 15px;
+    font-size: 10px;
     cursor: pointer;
     padding: 0 0.35rem;
     border-radius: 50%;
@@ -91,17 +91,68 @@ main{
     background-color:#2f7ce7;
 }
 fieldset{
-    background-color: #91bbf6;
+    background-color: #eef5ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5em;
+    border: none;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
 }
 .modal{
     position: fixed;
     top: 50%;
     left: 50%;
-    padding: 5px;
+    padding: 1.5rem;
+    width: min(95vw, 420px);
     transform: translate(-50%, -50%);
-    border-radius: 5px;
+    border-radius: 24px;
+    background-color: #ffffff;
+    border: 1px solid rgba(15,23,42,0.08);
+    box-shadow: 0 28px 60px rgba(15,23,42,0.18);
     z-index: 290;
     visibility: hidden;
+}
+.modal form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.modal label{
+    display: block;
+    margin-bottom: 0.35rem;
+    color: #334155;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+.modal input,
+.modal select{
+    width: 100%;
+    padding: 0.95rem 1rem;
+    border-radius: 14px;
+    border: 1px solid rgba(15,23,42,0.15);
+    background-color: #ffffff;
+    color: #0f172a;
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.modal input:focus,
+.modal select:focus{
+    outline: none;
+    border-color: #24a1fa;
+    box-shadow: 0 0 0 4px rgba(36,161,250,0.14);
+}
+legend{
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 0.45rem 0.9rem;
+    background-color: #dbeafe;
+    border-radius: 999px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0f172a;
 }
 .open-modal{
     visibility: visible;
@@ -175,6 +226,7 @@ fieldset{
 .addProjectBtn {
     margin-top: 1rem;
     align-self: flex-start;
+    font-size: 15px;
 }
 
 .newTodoBtn {
@@ -217,8 +269,7 @@ fieldset{
     white-space: nowrap;
 }
 
-.todoDeleteButton,
-.projectDeleteButton{
+.todoDeleteButton{
     border: none;
     cursor: pointer;
     background-color: #ffe6e9;
@@ -228,6 +279,17 @@ fieldset{
     font-weight: 700;
     transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
 }
+.projectDeleteButton{ 
+    border: none;
+    cursor: pointer;
+    background-color: #ffe6e9;
+    color: #c11f2d;
+    padding: 0.15rem 0.25rem;
+    border-radius: 999px;
+    font-weight: 700;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
 
 .todoDeleteButton:hover,
 .projectDeleteButton:hover{
