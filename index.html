@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<script defer src="main.js"></script></head>
+<body>
+    <header>
+        <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18 7L9.42857 17L6 13" stroke="#0095FF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M18 7L11.767 14.2718" stroke="#363853" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+        <div class="logo">What-Todo</div>
+    </header>
+<main>
+
+<div class="sidebar">
+    <button class="inbox">Inbox</button>
+    <section class="projects">
+        <p>Projects</p>
+        <div class="currentProjects">
+
+        </div>
+        <button class="addProjectBtn"> Add Project</button>
+    </section>
+</div>
+
+
+ <div class="modal" id="modal">
+            <form>
+                <fieldset>
+                    <legend>Todo</legend>
+                     <label for="todoTitle">Title</label>
+                    <input type="text" name="todoTitle" id="todoTitle" maxlength="50" required>
+
+                    <label for="todoDescription">Description</label>
+                    <input type="text" name="todoDescription" id="todoDescription" maxlength="250">
+
+                     <label for="dueDate">Due Date</label>
+                    <input type="date" name="dueDate" id="dueDate" required>
+
+                    <label for="priority">Priority</label>
+                    <select name="priority" id="priority" required>
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+
+                     <div class="addTodoBtnContainer">
+                         <button type="submit" class="addTodoBtn">Add Todo</button>
+                     </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="modal" id="projectModal">
+            <form>
+                <fieldset>
+                    <legend>Project</legend>
+                     <label for="projectTitle">Title</label>
+                    <input type="text" name="projectTitle" id="projectTitle" maxlength="50" required>
+
+                    <label for="projectDescription">Description</label>
+                    <input type="text" name="projectDescription" id="projectDescription" maxlength="250">
+
+                     <div class="addProjectBtnContainer">
+                         <button type="submit" class="addProjectBtnForm">Add Project</button>
+                     </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="todoListContainer">
+
+        <h2 class="currentHeading">Inbox</h2>
+        <div class="todoList">
+            
+        </div> 
+        <button class="newTodoBtn">Add Todo</button>
+        </div>
+        
+
+
+    </main>
+
+    <footer>
+        <p>© 2026 What-Todo</p>
+    </footer>
+      <div class="overlay"></div>
+
+</body>
+</html>
